@@ -1,6 +1,6 @@
 {
   "name": "@yqstart-cli/utils",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "yqstart-cli utils",
   "author": "yqstart <yqstart@outlook.com>",
   "homepage": "https://github.com/yqstart/yqstart-cli#readme",
@@ -25,5 +25,6 @@
   },
   "bugs": {
     "url": "https://github.com/yqstart/yqstart-cli/issues"
-  }
+  },
+  "gitHead": "9edfb05b0008221af371d268e308c3054cb7bea3"
 }
