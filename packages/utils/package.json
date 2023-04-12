@@ -1,6 +1,6 @@
 {
   "name": "@yqstart-cli/utils",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "yqstart-cli utils",
   "author": "yqstart <yqstart@outlook.com>",
   "homepage": "https://github.com/yqstart/yqstart-cli#readme",
@@ -14,7 +14,8 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "repository": {
     "type": "git",
