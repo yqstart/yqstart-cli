@@ -25,10 +25,14 @@
     "url": "git+https://github.com/yqstart/yqstart-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/core.test.js"
+    "test": "node __tests__/core.test.js"
   },
   "bugs": {
     "url": "https://github.com/yqstart/yqstart-cli/issues"
   },
-  "gitHead": "9edfb05b0008221af371d268e308c3054cb7bea3"
+  "gitHead": "9edfb05b0008221af371d268e308c3054cb7bea3",
+  "dependencies": {
+    "@yqstart-cli/utils": "file:../utils",
+    "import-local": "^3.1.0"
+  }
 }
