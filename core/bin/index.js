@@ -1,5 +1,9 @@
 #! /usr/bin/env node
 
-const utils = require('@yqstart-cli/utils');
-utils()
-console.log('hello yqstart-cli')
+const importLocal = require('import-local')
+
+if(importLocal(__filename)) {
+    require('npmlog').info('cli', 'yqstart-cli local')
+} else {
+    require('../lib/core')(process.argv.slice(2))
+}

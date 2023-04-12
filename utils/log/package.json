@@ -1,0 +1,29 @@
+{
+  "name": "@yqstart-cli/log",
+  "version": "1.0.1",
+  "description": "yqstart-cli log",
+  "author": "yqstart <yqstart@outlook.com>",
+  "homepage": "https://github.com/yqstart/yqstart-cli#readme",
+  "license": "ISC",
+  "main": "lib/log.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yqstart/yqstart-cli.git"
+  },
+  "scripts": {
+    "test": "node __tests__/log.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/yqstart/yqstart-cli/issues"
+  },
+  "dependencies": {
+    "npmlog": "^7.0.1"
+  }
+}

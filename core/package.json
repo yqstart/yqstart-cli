@@ -32,7 +32,16 @@
   },
   "gitHead": "9edfb05b0008221af371d268e308c3054cb7bea3",
   "dependencies": {
-    "@yqstart-cli/utils": "file:../utils",
-    "import-local": "^3.1.0"
+    "@yqstart-cli/log": "file:../utils/log",
+    "@yqstart-cli/version": "file:../utils/version",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "import-local": "^3.1.0",
+    "minimist": "^1.2.8",
+    "npmlog": "^7.0.1",
+    "path-exists": "^4.0.0",
+    "root-check": "^1.0.0",
+    "semver": "^7.4.0",
+    "user-home": "^3.0.0"
   }
 }
