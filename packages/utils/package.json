@@ -1,0 +1,29 @@
+{
+  "name": "@yqstart-cli/utils",
+  "version": "1.0.0",
+  "description": "yqstart-cli utils",
+  "author": "yqstart <yqstart@outlook.com>",
+  "homepage": "https://github.com/yqstart/yqstart-cli#readme",
+  "license": "ISC",
+  "main": "lib/utils.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yqstart/yqstart-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/utils.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/yqstart/yqstart-cli/issues"
+  }
+}
