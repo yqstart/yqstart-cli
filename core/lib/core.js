@@ -3,6 +3,7 @@
 module.exports = core;
 
 const path = require('path')
+const commander = require('commander')
 const semver = require('semver')
 const userHome = require('user-home')
 const pathExists = require('path-exists').sync
@@ -11,15 +12,17 @@ const pkg = require('../package.json')
 const constant = require('./const')
 const log = require('@yqstart-cli/log')
 
+const program = new commander.Command
 async function core() {
   try {
     checkPkgVersion()
     checkNodeVersion()
     checkRoot()
     checkUserHome()
-    checkInputArgs()
+    // checkInputArgs()
     checkEnv()
     await checkGlobalUpdate()
+    registerCommand()
     // log.verbose('debug', 'test')
   }catch (err) {
     log.error(err.message)
@@ -97,4 +100,35 @@ async function checkGlobalUpdate() {
   if(newVersion && semver.gt(newVersion, currentVersion)) {
     log.warn('更新提示', colors.yellow(`当前版本: ${currentVersion}, 最新版本: ${newVersion}\n更新命令: npm install -g ${npmName}`))
   }
+}
+
+function registerCommand() {
+  program
+      .name(Object.keys(pkg.bin)[0])
+      .usage('<command> [options]')
+      .version(pkg.version)
+      .option('-d, --debug', '是否开启调试模式', false)
+
+  program.on('option:debug', function () {
+    if(program.debug){
+      process.env.LOG_LEVEL = 'verbose'
+    } else {
+      process.env.LOG_LEVEL = 'info'
+    }
+    log.level = process.env.LOG_LEVEL
+  })
+
+  program.on('command:*', function (obj){
+    const availableCommands = program.commands.map(cmd => cmd.name())
+    console.log(colors.red(`未知命令: ${ obj[0] }`))
+    if(availableCommands.length) {
+      console.log(colors.red(`可用命令: ${ availableCommands.join(',') }`))
+    }
+  })
+
+  if(program.args && program.args.length < 1) {
+    program.outputHelp()
+  }
+
+  program.parse(process.argv)
 }
