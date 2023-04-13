@@ -11,7 +11,7 @@ const pkg = require('../package.json')
 const constant = require('./const')
 const log = require('@yqstart-cli/log')
 
-function core() {
+async function core() {
   try {
     checkPkgVersion()
     checkNodeVersion()
@@ -19,7 +19,7 @@ function core() {
     checkUserHome()
     checkInputArgs()
     checkEnv()
-    checkGlobalUpdate()
+    await checkGlobalUpdate()
     // log.verbose('debug', 'test')
   }catch (err) {
     log.error(err.message)
@@ -89,9 +89,12 @@ function createDefaultConfig() {
   }
 }
 
-function checkGlobalUpdate() {
+async function checkGlobalUpdate() {
   const currentVersion = pkg.version
   const npmName = pkg.name
-  const { getNpmInfo } = require('@yqstart-cli/version')
-  getNpmInfo(npmName)
+  const { getNpmSemverVersions } = require('@yqstart-cli/version')
+  const newVersion = await getNpmSemverVersions(npmName, currentVersion)
+  if(newVersion && semver.gt(newVersion, currentVersion)) {
+    log.warn('更新提示', colors.yellow(`当前版本: ${currentVersion}, 最新版本: ${newVersion}\n更新命令: npm install -g ${npmName}`))
+  }
 }
