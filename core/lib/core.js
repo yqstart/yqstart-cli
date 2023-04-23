@@ -12,8 +12,9 @@ const pkg = require('../package.json')
 const constant = require('./const')
 const log = require('@yqstart-cli/log')
 const init = require('@yqstart-cli/init')
+const exec =  require('@yqstart-cli/exec')
 
-const program = new commander.Command
+const program = new commander.Command()
 async function core() {
   try {
     await prepare()
@@ -106,11 +107,11 @@ function registerCommand() {
   program
       .command('init [projectName]')
       .option('-f, --force', '是否强制初始化项目')
-      .action(init)
+      .action(exec)
 
 
   program.on('option:debug', function () {
-    if(program.debug){
+    if(program.opts().debug){
       process.env.LOG_LEVEL = 'verbose'
     } else {
       process.env.LOG_LEVEL = 'info'
@@ -119,8 +120,8 @@ function registerCommand() {
   })
 
   program.on('option:targetPath', function () {
-    if(program.targetPath){
-      process.env.CLI_TARGET_PATH = program.targetPath
+    if(program.opts().targetPath){
+      process.env.CLI_TARGET_PATH = program.opts().targetPath
     }
   })
 
@@ -133,11 +134,12 @@ function registerCommand() {
   })
 
   if(program.args && program.args.length < 1) {
-    console.log('sss', program)
     // program.outputHelp()
   }
 
   program.parse(process.argv)
+
+
 }
 
 async function prepare() {
