@@ -11,19 +11,13 @@ const colors = require('colors/safe')
 const pkg = require('../package.json')
 const constant = require('./const')
 const log = require('@yqstart-cli/log')
+const init = require('@yqstart-cli/init')
 
 const program = new commander.Command
 async function core() {
   try {
-    checkPkgVersion()
-    checkNodeVersion()
-    checkRoot()
-    checkUserHome()
-    // checkInputArgs()
-    checkEnv()
-    await checkGlobalUpdate()
+    await prepare()
     registerCommand()
-    // log.verbose('debug', 'test')
   }catch (err) {
     log.error(err.message)
   }
@@ -81,7 +75,6 @@ function checkEnv() {
     });
   }
   createDefaultConfig()
-  log.verbose('环境变量', process.env.CLI_HOME)
 }
 
 function createDefaultConfig() {
@@ -108,13 +101,14 @@ function registerCommand() {
       .usage('<command> [options]')
       .version(pkg.version)
       .option('-d, --debug', '是否开启调试模式', false)
+      .option('-tp, --targetPath <targetPath>', '是否指定本地调试文件路径', '')
 
   program
       .command('init [projectName]')
       .option('-f, --force', '是否强制初始化项目')
-      .action((projectName, cmdObj) => {
-        console.log('init', projectName, cmdObj.force)
-      })
+      .action(init)
+
+
   program.on('option:debug', function () {
     if(program.debug){
       process.env.LOG_LEVEL = 'verbose'
@@ -122,6 +116,12 @@ function registerCommand() {
       process.env.LOG_LEVEL = 'info'
     }
     log.level = process.env.LOG_LEVEL
+  })
+
+  program.on('option:targetPath', function () {
+    if(program.targetPath){
+      process.env.CLI_TARGET_PATH = program.targetPath
+    }
   })
 
   program.on('command:*', function (obj){
@@ -133,8 +133,20 @@ function registerCommand() {
   })
 
   if(program.args && program.args.length < 1) {
-    program.outputHelp()
+    console.log('sss', program)
+    // program.outputHelp()
   }
 
   program.parse(process.argv)
+}
+
+async function prepare() {
+  checkPkgVersion()
+  checkNodeVersion()
+  checkRoot()
+  checkUserHome()
+  // checkInputArgs()
+  checkEnv()
+  await checkGlobalUpdate()
+  // log.verbose('debug', 'test')
 }
