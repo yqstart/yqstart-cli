@@ -3,6 +3,8 @@
 const { isObject } = require('@yqstart-cli/utils')
 const pkgDir = require('pkg-dir').sync
 const path = require('path')
+// macos /win 路径兼容
+const formatPath = require('@yqstart-cli/format-path')
 class Package {
   constructor(options) {
     if(!options) {
@@ -27,7 +29,7 @@ class Package {
     if(dir) {
       const pkgFile = require(path.resolve(dir, 'package.json'))
       if(pkgFile && pkgFile.main) {
-        return path.resolve(dir, pkgFile.main)
+        return formatPath(path.resolve(dir, pkgFile.main))
       }
     }
     return null

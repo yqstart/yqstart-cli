@@ -1,11 +1,11 @@
 {
-  "name": "@yqstart-cli/package",
+  "name": "@yqstart-cli/format-path",
   "version": "1.0.1",
   "description": "> TODO: description",
   "author": "yqstart <yqstart@outlook.com>",
   "homepage": "https://github.com/yqstart/yqstart-cli#readme",
   "license": "ISC",
-  "main": "lib/package.js",
+  "main": "lib/format-path.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -21,14 +21,9 @@
     "url": "git+https://github.com/yqstart/yqstart-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@yqstart-cli/package.test.js"
+    "test": "node ./__tests__/@yqstart-cli/format-path.test.js"
   },
   "bugs": {
     "url": "https://github.com/yqstart/yqstart-cli/issues"
-  },
-  "dependencies": {
-    "@yqstart-cli/utils": "file:../../utils",
-    "@yqstart-cli/format-path": "file:../../utils/format-path",
-    "pkg-dir": "^5.0.0"
   }
 }
