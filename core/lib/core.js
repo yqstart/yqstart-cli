@@ -109,6 +109,12 @@ function registerCommand() {
       .version(pkg.version)
       .option('-d, --debug', '是否开启调试模式', false)
 
+  program
+      .command('init [projectName]')
+      .option('-f, --force', '是否强制初始化项目')
+      .action((projectName, cmdObj) => {
+        console.log('init', projectName, cmdObj.force)
+      })
   program.on('option:debug', function () {
     if(program.debug){
       process.env.LOG_LEVEL = 'verbose'
