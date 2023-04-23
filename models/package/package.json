@@ -25,5 +25,9 @@
   },
   "bugs": {
     "url": "https://github.com/yqstart/yqstart-cli/issues"
+  },
+  "dependencies": {
+    "@yqstart-cli/utils": "file:../../utils",
+    "pkg-dir": "^5.0.0"
   }
 }

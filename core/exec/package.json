@@ -27,6 +27,7 @@
     "url": "https://github.com/yqstart/yqstart-cli/issues"
   },
   "dependencies": {
-    "@yqstart-cli/package": "file:../../models/package"
+    "@yqstart-cli/package": "file:../../models/package",
+    "@yqstart-cli/log": "file:../../utils/package"
   }
 }
