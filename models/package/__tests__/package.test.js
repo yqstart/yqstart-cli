@@ -1,7 +1,7 @@
 'use strict';
 
-const package = require('../lib/package');
+const Package = require('../lib/package');
 const assert = require('assert').strict;
 
-assert.strictEqual(package(), 'Hello from package');
+assert.strictEqual(new Package(), 'Hello from package');
 console.info('package tests passed');

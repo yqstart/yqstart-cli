@@ -1,7 +1,10 @@
 'use strict';
 
-module.exports = package;
+class Package {
+  constructor() {
+    console.log('Package')
+  }
 
-function package() {
-  return 'Hello from package';
 }
+
+module.exports = Package;
